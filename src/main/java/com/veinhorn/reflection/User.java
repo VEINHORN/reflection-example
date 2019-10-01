@@ -1,14 +1,22 @@
 package com.veinhorn.reflection;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class User {
     public Integer id;
     public String username;
     public User parentUser;
-    public Order order;
+    public List<Order> orders;
 
     public User(Integer id, String username) {
         this.id = id;
         this.username = username;
+
+        this.orders = Arrays.asList(
+                new Order(1234, 123232),
+                new Order(345, 4567688)
+        );
     }
 
     public User(Integer id, String username, User parentUser) {
@@ -16,6 +24,9 @@ public class User {
         this.username = username;
         this.parentUser = parentUser;
 
-        this.order = new Order(1234, 123232);
+        this.orders = Arrays.asList(
+                new Order(1234, 123232),
+                new Order(345, 4567688)
+        );
     }
 }
