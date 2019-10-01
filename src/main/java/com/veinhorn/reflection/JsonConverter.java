@@ -14,8 +14,10 @@ public class JsonConverter {
 
         Field[] fields = json.getClass().getFields();
         for (Field field : fields) {
-            jsonFields.add(toJsonField(json, field));
-            // System.out.println(field.getName());
+            String jsonField = toJsonField(json, field);
+            if (jsonField != null) {
+                jsonFields.add(jsonField);
+            }
         }
 
         StringJoiner joiner = new StringJoiner(",\n");
@@ -32,8 +34,13 @@ public class JsonConverter {
             return String.format("\t\"%s\": %d", field.getName(), (Integer) field.get(json));
         } else if (field.getType().equals(String.class)) {
             return String.format("\t\"%s\": \"%s\"", field.getName(), (String) field.get(json));
+        } else { // any other type
+            Object obj = field.get(json);
+            if (obj != null) {
+                return "\"" + field.getName() + "\": " + convert(obj);
+            }
+            return null;
         }
-        throw new IllegalArgumentException("Cannot convert object field to the JSON field.");
     }
 
 }
