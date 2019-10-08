@@ -1,4 +1,4 @@
-package com.veinhorn.reflection;
+package com.veinhorn.reflection.domain;
 
 public class Order {
     public Integer orderId;

@@ -1,9 +1,12 @@
-package com.veinhorn.reflection;
+package com.veinhorn.reflection.domain;
+
+import com.veinhorn.reflection.annotation.JsonField;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class User {
+    @JsonField
     public Integer id;
     public String username;
     public User parentUser;
